@@ -9,15 +9,15 @@ const Signup = () => {
    const createUser= async(e)=>{
     e.preventDefault()
      try{
-    await axios.post("http://localhost:3009/signup",{
+    await axios.post("http://localhost:3009/user/register",{
         username:username,
         email:email,
         password:password
     })
-    console.log("succesfully registred")
+           alert("Registred Succesfully")
      }
      catch(e){
-       console.log(e)
+       alert(e.message)
      }
     
    }

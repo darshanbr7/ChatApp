@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import  axios from "axios"
 const Signup = () => {
+    const navigate=useNavigate()
    const[check,setCheck]= React.useState(false)
    const[username,setUsername]=React.useState("") 
    const[email,setEmail]=React.useState("") 
@@ -13,7 +14,13 @@ const Signup = () => {
         username:username,
         email:email,
         password:password
+    }).then((res)=>{
+        console.log(res.data)
+        navigate("/Login")
     })
+      .catch((e)=>{
+        console.log(e)
+      })
            alert("Registred Succesfully")
      }
      catch(e){

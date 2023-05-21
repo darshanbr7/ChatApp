@@ -1,4 +1,5 @@
-const Signup=require("../Module/Signup")
+const Signup=require("../Modle/Signup")
+const jwt=require("jsonwebtoken")
 const bcrypt=require("bcrypt")
 const LoginController={}
 LoginController.login= (req,res)=>{
@@ -9,12 +10,19 @@ LoginController.login= (req,res)=>{
              if(!verifyPass){
                 res.status(401).json("Email/Password Error")
              }else{
-                res.json(user)
+                const token={
+                  user_Id:user._id,
+                  username:user.username,
+                  email:user.email
+                }
+                const gentoken=jwt.sign(token,"psa123",{expiresIn:"5d"})
+                res.send({
+                  "token":gentoken
+                })
              }
          })
-         .catch(()=>{
-           
-           res.send("Mobile/Email or Password is wrong")
+         .catch((e)=>{
+          res.status(401).json("Email/Password Error")
          })
 }
 module.exports=LoginController

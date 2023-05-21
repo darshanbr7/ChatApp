@@ -23,10 +23,6 @@ const user=new Schema({
     password:{
         type:String,
         required:[true, "Password is needed"],
-    },
-    user_Id:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
     }
 })
 

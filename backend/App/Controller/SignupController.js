@@ -1,4 +1,4 @@
-const Signup = require("../Module/Signup")
+const Signup = require("../Modle/Signup")
 const bcrypt=require("bcrypt")
 const jwt=require("jsonwebtoken")
 
@@ -16,15 +16,7 @@ SignupController.register=(req,res)=>{
                         user.password=encrypt
                         user.save()
                             .then((user)=>{
-                               const token={
-                                user_Id:user._id,
-                                username:user.username,
-                                email:user.email
-                               }
-                               const gentoken=jwt.sign(token,"psa123",{expiresIn:"5d"})
-                               res.json({
-                                "token":gentoken
-                               })
+                              res.json(user)
                             })
                             .catch((e)=>{
                                 res.json(e.message)

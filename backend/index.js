@@ -1,6 +1,6 @@
 const express=require("express")
 const Connect=require("./Config/DBcontroller")
-const route=require("./Config/Router")
+const route=require("./Config/Routes")
 const cors=require("cors")
 const app=express()
 const port=3009
